@@ -1,0 +1,29 @@
+//Make a basic http callout and print the result using system.debug https://postman-echo.com/get?foo1=bar1&foo2=bar2 
+//Create Apex Class CalloutReq3.apxc
+
+public class EchoCalloutReq3 {
+    
+	public void makeHttpEchoCallout() {
+      
+       String url = 'https://postman-echo.com/get?foo1=bar1&foo2=bar2';
+
+        HttpRequest request = new HttpRequest();
+        request.setEndpoint(url);
+        request.setMethod('GET');
+
+        Http http = new Http();
+        HttpResponse response = http.send(request);
+
+        if (response.getStatusCode() == 200) {
+            String responseBody = response.getBody();
+            System.debug('Response Body: ' + responseBody);
+        } 
+    else {
+            System.debug('HTTP Request failed with status code: ' + response.getStatusCode());
+        }
+    }
+}
+
+// Run code in Aynonmous window CTRL + E
+EchoCalloutReq3 tst = new EchoCalloutReq3();
+tst.makeHttpEchoCallout();
