@@ -1,0 +1,2 @@
+# SpringReqs
+Spring SOA requirements
